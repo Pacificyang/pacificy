@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	如果有一个包含标签体的标签，
+	他的标签体是一个普通文本，不是子标签，
+	而普通文本中包含了一个标签，那这样可以吗？
+-->
+
+<students>
+	<student>
+		<name>zhangsan</name>
+		<url>
+			<![CDATA[
+				<itheima>www.itheima.com</itheima>
+				<itcast>www.itcast.cn</itcast>
+			]]>
+		</url>
+	</student>
+	
+	
+	<student>
+		<name>zhangsan</name>
+		<url>
+			&lt;itheima&gt;www.itheima.com&lt;/itheima&gt;
+		</url>
+	</student>
+</students>
