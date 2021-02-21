@@ -18,7 +18,7 @@ pom.xml
 */
 public class SendSms {
      public void send(String msg) {
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAImXzzxuESO1y0", "KOznFpKUuOPkaLCgmxoxsABo681Xng");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "", "");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -28,9 +28,9 @@ public class SendSms {
         request.setSysAction("SendSms");
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", "18717857959");
-        request.putQueryParameter("SignName", "ÑîÌ«Æ½²âÊÔ");
+        request.putQueryParameter("SignName", "Ã‘Ã®ÃŒÂ«Ã†Â½Â²Ã¢ÃŠÃ”");
         request.putQueryParameter("TemplateCode", "SMS_211498944");
-        request.putQueryParameter("TemplateParam", "{\"time\":\"20210220\",\"offline_server_name\":\"µçÄÔ1\"}");
+        request.putQueryParameter("TemplateParam", "{\"time\":\"20210220\",\"offline_server_name\":\"ÂµÃ§Ã„Ã”1\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
