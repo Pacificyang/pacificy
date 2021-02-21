@@ -62,6 +62,42 @@ public class Jdbc {
 		return ips;
 	}
 
+	public void setstatus(String ip,String status){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> ips = new LinkedList<String>();
+		try{
+			// 使用连接池：
+			// 从属性文件中获取：
+			Properties properties = new Properties();
+			properties.load(new FileInputStream("src/druid2.properties"));
+			DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
+			// 获得连接：
+			conn = dataSource.getConnection();
+			// 编写SQL:
+			String sql = "update appserver set server_status=? where server_ip=?";
+			// 预编译SQL:
+			pstmt = conn.prepareStatement(sql);
+			// 设置参数:
+			pstmt.setString(1,status);
+			pstmt.setString(2,ip);
+			// 执行SQL:
+			int num = pstmt.executeUpdate();
+			if(num>0){
+				System.out.println(ip+" status update success!");
+			}else{
+				System.out.println(ip+" status update fail！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			JDBCUtils.release(rs, pstmt, conn);
+		}
+
+
+	}
+
 	public List<String> setips(){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -74,7 +110,6 @@ public class Jdbc {
 			properties.load(new FileInputStream("src/druid2.properties"));
 			DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
 			// 获得连接：
-//			conn = JDBCUtils.getConnection();
 			conn = dataSource.getConnection();
 			// 编写SQL:
 			String sql = "select * from appserver";

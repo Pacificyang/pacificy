@@ -1,6 +1,7 @@
 import cn.pacificy.jdbc.datasource.DruidDemo1;
 import cn.pacificy.ping.Jdbc;
 import cn.pacificy.ping.Ping;
+import cn.pacificy.ping.SendSms;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,12 +19,33 @@ public class my {
 
         List<String> ips=jdbc.getips();
 
-
+        String alertmsg = "";
         Ping myPing = new Ping();
+        SendSms mySms = new SendSms();
 
-        for(String ip:ips){
-            myPing.ping(ip);
+//        for(String ip:ips){
+//            boolean  res = myPing.ping(ip);
+//            if(res){
+//
+//                jdbc.setstatus(ip,"online");
+//            }else{
+//
+//                jdbc.setstatus(ip,"offline");
+//                alertmsg = alertmsg+ip+";";
+//            }
+//        }
+
+        //send alertmsg
+        if(alertmsg==""){
+
+            mySms.send("none");
+
+        }else{
+            alertmsg = alertmsg;
+            //sendAlert(alertmsg);
+            mySms.send(alertmsg);
         }
+
 
 
     }
