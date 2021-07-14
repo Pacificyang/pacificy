@@ -27,10 +27,10 @@ public class SendSms {
         request.setSysVersion("2017-05-25");
         request.setSysAction("SendSms");
         request.putQueryParameter("RegionId", "cn-hangzhou");
-        request.putQueryParameter("PhoneNumbers", "18717857959");
-        request.putQueryParameter("SignName", "ÑîÌ«Æ½²âÊÔ");
-        request.putQueryParameter("TemplateCode", "SMS_211498944");
-        request.putQueryParameter("TemplateParam", "{\"time\":\"20210220\",\"offline_server_name\":\"µçÄÔ1\"}");
+        request.putQueryParameter("PhoneNumbers", "");
+        request.putQueryParameter("SignName", "");
+        request.putQueryParameter("TemplateCode", "");
+        request.putQueryParameter("TemplateParam", "{\"time\":\"20210220\",\"offline_server_name\":\"\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
